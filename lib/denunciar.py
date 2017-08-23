@@ -5,9 +5,10 @@ import re
 import os
 from bs4 import BeautifulSoup
 from datetime import datetime
-from image import fix_and_encode, filename_to_timestamp
-from template import render_template
-from parse_xml import xml_to_dict
+
+from .image import fix_and_encode, filename_to_timestamp
+from .template import render_template
+from .parse_xml import xml_to_dict
 
 valid_plate = re.compile(r'^([a-z]{3}[0-9]{3})|([a-z]{2}[0-9]{3}[a-z]{2})$',
                          re.I)
@@ -35,7 +36,7 @@ def post_data(template):
     r = requests.post(submit_url, data=template)
     resp = r.text
     print(resp)
-    print(xml_to_dict(resp))
+    return xml_to_dict(resp)
 
 
 def populate_data(user_data, filename1, filename2):
@@ -54,7 +55,9 @@ def populate_data(user_data, filename1, filename2):
 
 
 def complaint(obs, plate, filename1, filename2):
+    print("Opening data.json")
     user_data = json.loads(open('data.json').read())
+    print("Open!")
 
     if not os.path.exists(filename1) or not os.path.exists(filename2):
         print("invalid filenames")
@@ -63,6 +66,7 @@ def complaint(obs, plate, filename1, filename2):
     user_data["OBSERVACION"] = obs
     user_data["PATENTE"] = plate
     token = get_token(user_data)
+    print(token)
 
     if token is None:
         print("Invalid token")

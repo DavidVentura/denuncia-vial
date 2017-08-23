@@ -1,3 +1,4 @@
+import os
 def replace_line(line, data):
     for d in data:
         if d in line:
@@ -9,7 +10,11 @@ def replace_line(line, data):
 
 def render_template(filename, data):
     ret = []
-    f = open(filename, 'r')
+    dname = os.path.dirname(os.path.abspath(__file__))
+    target = os.path.join(dname, filename)
+    print("Opening %s" % target)
+    f = open(target, 'r')
+    print("Open!")
     lines = f.read().split("\n")
     for line in lines:
         if line is None:
