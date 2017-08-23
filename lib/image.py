@@ -5,16 +5,25 @@ import exifread
 
 
 def filename_to_timestamp(fname):
+    print("open %s" % fname)
     f = open(fname, 'rb')
+    print("open!!")
+    dateformat = '%Y:%m:%d %H:%M:%S'
     tags = exifread.process_file(f, details=False)
     dt_tags = ["Image DateTime", "EXIF DateTimeOriginal", "DateTime"]
 
     times = set()
     for d in dt_tags:
         if d in tags:
-            times.add(datetime.strptime(str(tags[d]), '%Y:%m:%d %H:%M:%S'))
+            times.add(datetime.strptime(str(tags[d]), dateformat))
 
-    return (list(times)[0]).timestamp()
+    l = list(times)
+    if len(l) > 0:
+        ret = l[0]
+    else:
+        ret = datetime.now()
+
+    return ret.timestamp()
 
 
 def orientation_to_rotation(orientation):
@@ -34,8 +43,11 @@ def fix_and_encode(fname):
     ret = ""
     tag = "exif:Orientation"
     with Image(filename=fname) as i:
-        orientation = [v for k, v in i.metadata.items() if k == tag][0]
-        i.rotate(orientation_to_rotation(orientation))
+        orientations = [v for k, v in i.metadata.items() if k == tag]
+        if len(orientations) > 0:
+            orientation = orientations[0]
+            i.rotate(orientation_to_rotation(orientation))
+
         i.compression_quality = 15
         ret = i.make_blob()
 
