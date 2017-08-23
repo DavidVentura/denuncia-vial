@@ -1,11 +1,12 @@
 import xmltodict
-valid_ret_keys = ['faultstring']
+valid_ret_keys = ['faultstring', 'identificadorContacto', 'EspecificacionComprobante']
 
 
 def traverse(odict):
     ret = {}
     for key in odict.keys():
-        if key.startswith('soap'):
+        print(odict.keys())
+        if key.startswith('soap:') or key.startswith('ns1:'):
             # recurse
             ret.update(traverse(odict[key]))
 

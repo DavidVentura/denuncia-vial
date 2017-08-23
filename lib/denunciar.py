@@ -14,10 +14,11 @@ valid_plate = re.compile(r'^([a-z]{3}[0-9]{3})|([a-z]{2}[0-9]{3}[a-z]{2})$',
                          re.I)
 token_url = "http://suaci-gcba.buenosaires.gob.ar/suaci/services/operadorCiudadano?op=obtenerToken"
 submit_url = 'http://suaci-gcba.buenosaires.gob.ar/suaci/services/suaciWebServices?op=crearOReiterarContacto'
+verify_url = "https://gestioncolaborativa.buenosaires.gob.ar/detalleSolicitud?identificador=%s"
 
 
 def get_token(data):
-    offline_testing = True
+    offline_testing = False
     if not valid_plate.match(data["PATENTE"]):
         print("Patente invalida")
         # IMPORANT: these idiots only check for the string length to be {6,7}.
@@ -39,10 +40,10 @@ def post_data(template):
     r = requests.post(submit_url, data=template)
     print("Posted!")
     resp = r.text
-    print("#" * 50)
-    print(resp)
-    print("#" * 50)
-    return xml_to_dict(resp)
+    ret = dict(xml_to_dict(resp)['EspecificacionComprobante'])
+    if 'identificadorContacto' in ret:
+        return ret['identificadorContacto']
+    return ret
 
 
 def populate_data(user_data, filename1, filename2):
@@ -73,7 +74,6 @@ def complaint(obs, plate, filename1, filename2):
     user_data["PATENTE"] = plate
     print("Getting token!")
     token = get_token(user_data)
-    print(token)
 
     if token is None:
         print("Invalid token")
@@ -85,4 +85,7 @@ def complaint(obs, plate, filename1, filename2):
     data = populate_data(user_data, filename1, filename2)
     print("Data populated")
     template = render_template("templates/request.xml", data)
-    return post_data(template)
+    posted = post_data(template)
+    if isinstance(posted, str):
+        return verify_url % posted
+    return posted
