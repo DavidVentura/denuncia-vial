@@ -28,6 +28,10 @@ class states(Enum):
     FINISHED = 7
 
 
+def error_callback(bot, update, error):
+    print(error)
+
+
 def restricted(func):
     @wraps(func)
     def wrapped(bot, update, *args, **kwargs):
@@ -98,7 +102,8 @@ def text(bot, update):
 
     if (user_state[user_id]['state'] in
        [states.WAITING_PLATE, states.WAITING_CONFIRMATION_PLATE]):
-        user_state[user_id]['plate'] = update.message.text.strip()
+        plate = update.message.text.strip().replace(' ', '')
+        user_state[user_id]['plate'] = plate
         user_state[user_id]['state'] = states.WAITING_CONFIRMATION_PLATE
         print("WAITING_CONFIRMATION_PLATE")
     else:
@@ -127,6 +132,8 @@ def main():
     # on noncommand i.e message - echo the message on Telegram
     dp.add_handler(MessageHandler(Filters.text, text))
     dp.add_handler(MessageHandler(Filters.photo, image))
+
+    dp.add_error_handler(error_callback)
 
     # log all errors
     # dp.add_error_handler(error)
