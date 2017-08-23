@@ -24,7 +24,9 @@ def get_token(data):
         return None
     token_body = render_template("templates/get_token.xml", data)
     if offline_testing:
-        response = open('templates/response_token.xml', 'r')
+        response = render_template('templates/response_token.xml', {})
+        # render_template takes care of relative paths w.r.t. the module
+        # using an empty dict is to ensure it does nothing.
     else:
         r = requests.post(token_url, data=token_body)
         response = r.text
@@ -33,9 +35,13 @@ def get_token(data):
 
 
 def post_data(template):
+    print("Posting..")
     r = requests.post(submit_url, data=template)
+    print("Posted!")
     resp = r.text
+    print("#" * 50)
     print(resp)
+    print("#" * 50)
     return xml_to_dict(resp)
 
 
@@ -65,6 +71,7 @@ def complaint(obs, plate, filename1, filename2):
 
     user_data["OBSERVACION"] = obs
     user_data["PATENTE"] = plate
+    print("Getting token!")
     token = get_token(user_data)
     print(token)
 
@@ -74,6 +81,8 @@ def complaint(obs, plate, filename1, filename2):
 
     user_data["TOKEN"] = token
 
+    print("Populating data")
     data = populate_data(user_data, filename1, filename2)
+    print("Data populated")
     template = render_template("templates/request.xml", data)
-    post_data(template)
+    return post_data(template)
