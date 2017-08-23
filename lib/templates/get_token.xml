@@ -1,0 +1,14 @@
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+     <soap:Body>
+         <ns1:obtenerToken xmlns:ns1="http://ciudadano.service.buenosaires.gob.ar/">
+         <ciudadano>
+			 <nombres>{{NOMBRE}}</nombres>
+			 <apellidos>{{APELLIDO}}</apellidos>
+             <tipoDocumento>DNI</tipoDocumento>
+			 <numeroDocumento>{{DNI}}</numeroDocumento>
+			 <email>{{MAIL}}</email>
+			 <genero>{{SEXO}</genero>
+         </ciudadano>
+         </ns1:obtenerToken>
+     </soap:Body>
+</soap:Envelope>

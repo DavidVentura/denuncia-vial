@@ -1,0 +1,5 @@
+*.xml
+*.jpg
+__pycache__
+data.json
+flowfinal

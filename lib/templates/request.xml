@@ -1,0 +1,148 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:suac="http://suaciWS.ws.service.buenosaires.gob.ar/">
+	<soapenv:Header/>
+    <soapenv:Body>
+    <suac:crearOReiterarContacto>
+    <!--Optional:-->
+	<token>{{TOKEN}}</token>
+    <!--Optional:-->
+    <usuario>denunciavial</usuario>
+    <!--Optional:-->
+    <password>1234</password>
+    <!--Optional:-->
+    <codigoPrestacion>1476814313550</codigoPrestacion>
+    <!--Optional:-->
+    <modificarCiudadano>false</modificarCiudadano>
+    <!--Optional:-->
+    <EspecificacionDatosParaCreacionDeCiudadano>
+    <!--Optional:-->
+    <especificacionDocumento>
+    <!--Optional:-->
+        <tipoDocumento>DNI</tipoDocumento>
+		<numeroDocumento>{{DNI}}</numeroDocumento>
+    </especificacionDocumento>
+	<nombres>{{NOMBRE}}</nombres>
+	<apellido>{{APELLIDO}}</apellido>
+    <!--Optional:-->
+    <nacionalidad></nacionalidad>
+    <!--Optional:-->
+	<sexo>{{SEXO}}</sexo>
+    <!--Optional:-->
+	<correoElectronico>{{MAIL}}</correoElectronico>
+    <!--Optional:-->
+    <telefonoParticular></telefonoParticular>
+    <!--Optional:-->
+    <telefonoCelular></telefonoCelular>
+    <!--Optional:-->
+    <EspecificacionHorario>
+    <!--Optional:-->
+    <horarioDesde></horarioDesde>
+    <!--Optional:-->
+    <horarioHasta></horarioHasta>
+    </EspecificacionHorario>
+    <!--Optional:-->
+    <EspecificacionBasicaDatosDeDomicilio>
+    <!--Optional:-->
+    <calle></calle>
+    <!--Optional:-->
+    <altura></altura>
+    <!--Optional:-->
+    <piso></piso>
+    <!--Optional:-->
+    <departamento></departamento>
+    <!--Optional:-->
+    <codigoPostal></codigoPostal>
+    <!--Optional:-->
+    <localidad></localidad>
+    <!--Optional:-->
+    <observaciones></observaciones>
+    </EspecificacionBasicaDatosDeDomicilio>
+    </EspecificacionDatosParaCreacionDeCiudadano>
+    <!--Optional:-->
+    <EspecificacionBasicaDatosDomicilioDeContacto>
+    <localidad>ciudadBuenosAires</localidad>
+    <calle>{{CALLE}}</calle>
+    <altura>{{ALTURA}}</altura>
+    <esquinaProxima></esquinaProxima>
+    </EspecificacionBasicaDatosDomicilioDeContacto>
+    <!--Optional:-->
+    <identificadorEspacioPublico></identificadorEspacioPublico>
+    <!--Optional:-->
+    <EspecificacionDatosDelEstablecimiento>
+    <!--Optional:-->
+    <razonSocial></razonSocial>
+    <!--Optional:-->
+    <cuit></cuit>
+    </EspecificacionDatosDelEstablecimiento>
+    <!--Optional:-->
+    <EspecificacionDatosDeMedioDeContacto>
+    <!--Optional:-->
+    <correoElectronico></correoElectronico>
+    <!--Optional:-->
+    <telefonoParticular></telefonoParticular>
+    <!--Optional:-->
+    <telefonoCelular></telefonoCelular>
+    </EspecificacionDatosDeMedioDeContacto>
+    <!--Optional:-->
+    <EspecificacionInformacionAdicional>
+    
+    <!--Zero or more repetitions:-->
+    
+    <EspecificacionBasicaArchivoAdjunto>
+    
+    <!--Optional:-->
+    
+	<nombre>Reclamo_de_{{DNI}}-.jpeg</nombre>
+    
+    <!--Optional:-->
+    
+	<bytesBase64>{{FILE1}}</bytesBase64>
+    
+    </EspecificacionBasicaArchivoAdjunto>
+    
+    <EspecificacionBasicaArchivoAdjunto>
+    
+    <!--Optional:-->
+    
+	<nombre>Reclamo_de_{{DNI}}-2.jpeg</nombre>
+    
+    <!--Optional:-->
+    
+	<bytesBase64>{{FILE2}}</bytesBase64>
+    
+    </EspecificacionBasicaArchivoAdjunto>
+    
+    <!--Optional:-->
+    
+    
+	<observacion>{{OBSERVACION}}</observacion>
+    
+    </EspecificacionInformacionAdicional>
+    <!--Optional:-->
+    <EspecificacionCuestionarioRespondido>
+    <!--Zero or more repetitions:-->
+    <respuestaCuestionario>
+    <!--Zero or more repetitions:-->
+	<respuesta>{{PATENTE}}</respuesta>
+    <!--Optional:-->
+    <observacion></observacion>
+    </respuestaCuestionario>
+    <respuestaCuestionario>
+    <!--Zero or more repetitions:-->
+	<respuesta>{{FECHA}}</respuesta>
+    <!--Optional:-->
+    <observacion></observacion>
+    </respuestaCuestionario>
+    <respuestaCuestionario>
+    <!--Zero or more repetitions:-->
+	<respuesta>{{HORA}}</respuesta>
+    <!--Optional:-->
+    <observacion></observacion>
+    </respuestaCuestionario>
+    </EspecificacionCuestionarioRespondido>
+    <!--Optional:-->
+    <idQuienLlama></idQuienLlama>
+    <!--Optional:-->
+    <versionApp>2.0</versionApp>
+    </suac:crearOReiterarContacto>
+    </soapenv:Body>
+</soapenv:Envelope>;

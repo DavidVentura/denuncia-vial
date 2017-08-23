@@ -1,0 +1,9 @@
+{
+    "NOMBRE": "your name",
+    "APELLIDO": "your lastname",
+    "DNI": "your dni",
+    "MAIL": "yourmail",
+    "SEXO": "masculino || femenino",
+    "CALLE": "street name",
+    "ALTURA": "street number"
+}

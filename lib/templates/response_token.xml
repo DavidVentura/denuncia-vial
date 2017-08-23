@@ -1,0 +1,9 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <ns1:obtenerTokenResponse xmlns:ns1="http://ciudadano.service.buenosaires.gob.ar/">
+            <obtenerToken xmlns:ns2="http://ciudadano.service.buenosaires.gob.ar/">
+                e4228df0dfadfdc34d8b84e1e3294c7e
+            </obtenerToken>
+        </ns1:obtenerTokenResponse>
+    </soap:Body>
+</soap:Envelope>
