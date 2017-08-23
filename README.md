@@ -1,3 +1,18 @@
+## Dependencies
+
+* BeautifulSoup
+* xmltodict
+* exifread
+* requests
+
+## Features
+
+* exif parsing
+  * auto rotation
+  * get time
+* Reduce image quality on upload
+* Generate link to check report status
+
 ## Usage
 Talk to your bot.
 
