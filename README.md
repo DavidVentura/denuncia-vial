@@ -1,3 +1,13 @@
+## Notes
+
+* You need to host your own bot
+* The link generated will only display 1 of the pictures. This is a 
+  front-end bug; both images are pushed (and it should be possible to
+  push more than 2..)
+* if the images have no EXIF, the current time will be set in the request.
+  **Check your server's timezone**
+
+
 ## Dependencies
 
 * BeautifulSoup
