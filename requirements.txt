@@ -1,3 +1,4 @@
+beautifulsoup4==4.5.3
 ExifRead==2.1.2
 python-telegram-bot==5.3.1
 requests==2.12.4
