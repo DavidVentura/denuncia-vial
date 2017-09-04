@@ -1,0 +1,5 @@
+ExifRead==2.1.2
+python-telegram-bot==5.3.1
+requests==2.12.4
+xmltodict==0.10.2
+Wand==0.4.4
