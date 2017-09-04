@@ -61,7 +61,8 @@ def confirm(bot, update):
         return
     state = user_state[user_id]
     update.message.reply_text('Complaining...')
-    response = complaint('obs', state['plate'], state['file1'], state['file2'])
+    complaint_str = "El vehiculo patente %s esta estacionado bloqueando mi garage" % state['plate']
+    response = complaint(complaint_str, state['plate'], state['file1'], state['file2'])
     update.message.reply_text('Confirmed (%s)' % response)
 
 
